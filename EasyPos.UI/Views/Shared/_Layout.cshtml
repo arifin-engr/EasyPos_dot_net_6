@@ -4,45 +4,201 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - EasyPos.UI</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+     @*jquery data  table*@
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="~/theme/css/bootstrap.min.css" />
+    <!-- site css -->
+    <link rel="stylesheet" href="~/theme/css/style.css" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="~/theme/css/responsive.css" />
+    <!-- color css -->
+    <link rel="stylesheet" href="~/theme/css/colors.css" />
+    <!-- select bootstrap -->
+    <link rel="stylesheet" href="~/theme/css/bootstrap-select.css" />
+    <!-- scrollbar css -->
+    <link rel="stylesheet" href="~/theme/css/perfect-scrollbar.css" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="~/theme/css/custom.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/EasyPos.UI.styles.css" asp-append-version="true" />
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EasyPos.UI</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+<body class="dashboard dashboard_1">
+    <div class="full_container">
+        <div class="inner_container">
+            <nav id="sidebar">
+                <div class="sidebar_blog_1">
+                    <div class="sidebar-header">
+                        <div class="logo_section">
+                            <a href="index.html"><img class="logo_icon img-responsive" src="~/theme/images/logo/pos-icon.jpg" alt="#" /></a>
+                        </div>
+                    </div>
+                    <div class="sidebar_user_info">
+                        <div class="icon_setting"></div>
+                        <div class="user_profle_side">
+                            <div class="user_img"><img class="img-responsive" src="~/theme/images/logo/pos-icon.jpg" alt="#" /></div>
+                            <div class="user_info">
+                                <h6>EASY POS</h6>
+                               
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div class="sidebar_blog_2">
+                    <h4>SALE & PURCHASE</h4>
+                    <ul class="list-unstyled components">
+                          <li><a href="widgets.html"><i class="fa fa-clock-o orange_color"></i> <span>POS</span></a></li>
+                          <li><a href="widgets.html"><i class="fa fa-clock-o orange_color"></i> <span>Sale</span></a></li>
+                        <li>
+                            <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-dashboard yellow_color"></i> <span>Purchase</span></a>
+                            <ul class="collapse list-unstyled" id="dashboard">
+                                <li>
+                                    <a href="dashboard.html">> <span>New Purchase</span></a>
+                                </li>
+                                <li>
+                                    <a href="dashboard_2.html">> <span>Manage Purchase</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        @*<li><a href="widgets.html"><i class="fa fa-clock-o orange_color"></i> <span>Widgets</span></a></li>
+                        <li>
+                            <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-diamond purple_color"></i> <span>Elements</span></a>
+                            <ul class="collapse list-unstyled" id="element">
+                                <li><a href="general_elements.html">> <span>General Elements</span></a></li>
+                                <li><a href="media_gallery.html">> <span>Media Gallery</span></a></li>
+                                <li><a href="icons.html">> <span>Icons</span></a></li>
+                                <li><a href="invoice.html">> <span>Invoice</span></a></li>
+                            </ul>
+                        </li>*@
+                        <h4>Product Information</h4>
+                        
+                        <li>
+                            <a href="#productsTab" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>Products</span></a>
+                            <ul class="collapse list-unstyled" id="productsTab">
+                                <li><a asp-controller="Products" asp-action="Upsert"> > <span>Add Products</span></a></li>
+                                <li><a <a asp-controller="Products" asp-action="Index"> > <span>Manage Products</span></a></li>
+                               
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#categgoryTab" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>Category</span></a>
+                            <ul class="collapse list-unstyled" id="categgoryTab">
+                                <li><a asp-controller="Categories" asp-action="Upsert"> > <span>Add Category</span></a></li>
+                                <li><a asp-controller="Categories" asp-action="Index"> > <span>Manage Category</span></a></li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#brandsTab" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>Brand</span></a>
+                            <ul class="collapse list-unstyled" id="brandsTab">
+                                <li><a  asp-controller="Brands" asp-action="Upsert"> > <span>Add Brand</span></a></li>
+                                <li><a asp-controller="Brands" asp-action="Index">> <span>Manage Brand</span></a></li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#unitTab" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>Unit</span></a>
+                            <ul class="collapse list-unstyled" id="unitTab">
+                                <li><a asp-controller="Units" asp-action="Upsert">> <span>Add Unit</span></a></li>
+                                <li><a asp-controller="Units" asp-action="Index">> <span>Manage Unit</span></a></li>
+
+                            </ul>
+                        </li>
+                        <h4>People Information</h4>
+                        <li class="active">
+                            <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Additional Pages</span></a>
+                            <ul class="collapse list-unstyled" id="additional_page">
+                                <li>
+                                    <a href="profile.html">> <span>Profile</span></a>
+                                </li>
+                                <li>
+                                    <a href="project.html">> <span>Projects</span></a>
+                                </li>
+                                <li>
+                                    <a href="login.html">> <span>Login</span></a>
+                                </li>
+                                <li>
+                                    <a href="404_error.html">> <span>404 Error</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="map.html"><i class="fa fa-map purple_color2"></i> <span>Map</span></a></li>
+                        <li><a href="charts.html"><i class="fa fa-bar-chart-o green_color"></i> <span>Charts</span></a></li>
+                        <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
+                    </ul>
+
+                </div>
+            </nav>
+            <!-- end sidebar -->
+            <!-- right content -->
+            
+            <div id="content">
+                <!-- topbar -->
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
+                            @*<div class="logo_section">
+                                <a class="text-light" href="index.html"><span class="text-light">Easy POS</span> </a>
+                            </div>*@
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                   
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="~/theme/images/logo/admin_ico.png" alt="#" /><span class="name_user">Shamsul Arifin</span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="profile.html">My Profile</a>
+                                                <a class="dropdown-item" href="settings.html">Settings</a>
+                                                <a class="dropdown-item" href="help.html">Help</a>
+                                                <a class="dropdown-item" href="#"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+
+
+                
+                    <main role="main" class="pb-3">
+                        @RenderBody()
+                    </main>
+               
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+        </div>
+     </div>
+   
 
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - EasyPos.UI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"> </script>
+    <script src="~/theme/js/popper.min.js"></script>
+    <script src="~/theme/js/bootstrap.min.js"></script>
+    <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <!-- wow animation -->
+    <script src="~/theme/js/animate.js"></script>
+    <!-- select country -->
+    <script src="~/theme/js/bootstrap-select.js"></script>
+    <!-- owl carousel -->
+    <script src="~/theme/js/owl.carousel.js"></script>
+    <!-- chart js -->
+    <script src="~/theme/js/Chart.min.js"></script>
+    <script src="~/theme/js/Chart.bundle.min.js"></script>
+    <script src="~/theme/js/utils.js"></script>
+    <script src="~/theme/js/analyser.js"></script>
+    <!-- nice scrollbar -->
+    <script src="~/theme/js/perfect-scrollbar.min.js"></script>
+    <script>
+        var ps = new PerfectScrollbar('#sidebar');
+    </script>
+    <!-- custom js -->
+    <script src="~/theme/js/custom.js"></script>
+    <script src="~/theme/js/chart_custom_style1.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

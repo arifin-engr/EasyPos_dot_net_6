@@ -16,9 +16,25 @@ namespace EasyPos.DAL.Repositories
         {
             _db= db;
         }
-        public void Update(Product entity)
+        public void Update(Product obj)
         {
-            _db.Update(entity);
+            var objFromDb = _db.Products.FirstOrDefault(x => x.Id == obj.Id);
+            if (objFromDb != null)
+            {
+                objFromDb.Name = obj.Name;
+                objFromDb.Description = obj.Description;
+                objFromDb.Code = obj.Code;
+                objFromDb.CategoryId = obj.CategoryId;
+                objFromDb.BrandId = obj.BrandId;
+                objFromDb.UnitId = obj.UnitId;
+                objFromDb.SubUnitId = obj.SubUnitId;
+                objFromDb.SalePrice = obj.SalePrice;
+                objFromDb.PurchaseCost = obj.PurchaseCost;
+                if (obj.ImageUrl != null)
+                {
+                    objFromDb.ImageUrl = obj.ImageUrl;
+                }
+            }
         }
     }
 }

@@ -11,6 +11,19 @@ builder.Services.AddDbContext<ApplicationDbContext>(x => x
 .UseSqlServer(builder.Configuration.GetConnectionString("con")));
 
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy =>
+        {
+            policy.WithOrigins("https://localhost:7225")
+            .AllowAnyHeader()
+            .AllowAnyMethod(); 
+        });
+                     
+});
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -31,7 +44,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
+app.UseCors(MyAllowSpecificOrigins);
 app.MapControllers();
-
+app.UseCors(MyAllowSpecificOrigins);
 app.Run();
