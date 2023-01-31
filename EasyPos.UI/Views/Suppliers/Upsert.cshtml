@@ -1,0 +1,62 @@
+﻿@model SupplierVM
+@{
+    ViewData["Title"] = "Upsert";
+}
+<div class="p-4 border">
+    <h1> @(Model.Supplier.Id == 0 ? "Create" : "Update") New Supplier</h1>
+   
+   
+    <hr />
+    <div class="pt-2">
+        <form asp-action="Upsert">
+            <input hidden asp-for="Supplier.Id" />
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label asp-for="Supplier.Name"></label>
+                        <input asp-for="Supplier.Name" class="form-control" />
+                        <span asp-validation-for="Supplier.Name" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Supplier.Address"></label>
+                        <textarea asp-for="Supplier.Address" class="form-control"></textarea>
+                        <span asp-validation-for="Supplier.Address" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Supplier.PhoneNumber"></label>
+                        <textarea asp-for="Supplier.PhoneNumber" class="form-control"></textarea>
+                        <span asp-validation-for="Supplier.PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Supplier.OpeningBalance"></label>
+                        <textarea asp-for="Supplier.OpeningBalance" class="form-control"></textarea>
+                        <span asp-validation-for="Supplier.OpeningBalance" class="text-danger"></span>
+                    </div>
+                     <div class="mb-3 d-flex">
+                        @if (Model.Supplier.Id==0)
+                        {
+                            <button type="submit" class="btn btn-info mx-1" style="width:140px">Submit</button>
+                        }
+                        else
+                        {
+                             <button type="submit" class="btn btn-info mx-1" style="width:140px">Update</button>
+                        }
+                       
+                        <a asp-controller="Suppliers" asp-action="Index" class="btn btn-secondary mx-1" style="width:140px">Go To List</a>
+                       
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts
+    {
+    @{
+        <partial name="_ValidationScriptsPartial.cshtml" />
+    }
+    <script src="~/js/Category/category.js"> </script>
+}

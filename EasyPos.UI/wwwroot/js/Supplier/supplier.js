@@ -16,7 +16,7 @@ function loadDataTable()
 
     let item = getAllItem();
     
-    dataTable = $('#tbl_Category').DataTable({
+    dataTable = $('#tbl_supplier').DataTable({
         "autoWidth": true,
         "data": item,
         "columns": [
@@ -26,6 +26,9 @@ function loadDataTable()
                 }
             },
             { 'data': "name",},
+            { 'data': "address",},
+            { 'data': "phoneNumber",},
+            { 'data': "openingBalance",},
             {
                 "data": "id",
                 "width": "40%",
@@ -33,7 +36,7 @@ function loadDataTable()
                     return '<div class="dropdown action-button mx-2">'
                         + '<button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" ><i class="fa-solid fa-gears"></i> Manage</button>'
                         + '<ul class="dropdown-menu">'
-                        + '<li><a  href="/Categories/Upsert?Id=' + data + '" class="dropdown-item text-warning"><i class="fa-solid fa-pen-to-square"></i> Edit </a></li>'
+                        + '<li><a  href="/Suppliers/Upsert?Id=' + data + '" class="dropdown-item text-warning"><i class="fa-solid fa-pen-to-square"></i> Edit </a></li>'
                         + '<li><a class="dropdown-item text-danger" onClick="Delete(' + data + ')" style="cursor:pointer"> <i class="fa-solid fa-trash"></i> Delete</a> </li> </ul> </div>'
                 }
             },
@@ -50,7 +53,7 @@ function getAllItem() {
     
     var item;
     $.ajax({
-        url: baseUrl + "/Categories/GetAll",
+        url: baseUrl + "/Suppliers/GetAll",
         method: "GET",
         async: false,
         dataType: "json",
@@ -80,7 +83,7 @@ function Delete(id) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: baseUrl+"/Categories/Delete?id=" + id,
+                url: baseUrl +"/Suppliers/Delete?id=" + id,
                 type: 'DELETE',
                 success: function (data) {
 

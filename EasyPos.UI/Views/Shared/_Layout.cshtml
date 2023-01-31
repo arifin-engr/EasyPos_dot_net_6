@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - EasyPos.UI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      @*jquery data  table*@
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="~/theme/css/bootstrap.min.css" />
@@ -17,10 +18,12 @@
     <link rel="stylesheet" href="~/theme/css/bootstrap-select.css" />
     <!-- scrollbar css -->
     <link rel="stylesheet" href="~/theme/css/perfect-scrollbar.css" />
+    
     <!-- custom css -->
     <link rel="stylesheet" href="~/theme/css/custom.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/EasyPos.UI.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
 </head>
 <body class="dashboard dashboard_1">
     <div class="full_container">
@@ -162,7 +165,7 @@
 
 
                 
-                    <main role="main" class="pb-3">
+                    <main role="main" class="py-3">
                         @RenderBody()
                     </main>
                
@@ -176,9 +179,11 @@
             &copy; 2023 - EasyPos.UI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"> </script>
-    <script src="~/theme/js/popper.min.js"></script>
-    <script src="~/theme/js/bootstrap.min.js"></script>
+    <script src="~/theme/js/jquery-3.3.1.min.js"></script>
+    <script src="~/theme/js/bootstrap.bundle.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
     <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <!-- wow animation -->
     <script src="~/theme/js/animate.js"></script>
@@ -193,6 +198,7 @@
     <script src="~/theme/js/analyser.js"></script>
     <!-- nice scrollbar -->
     <script src="~/theme/js/perfect-scrollbar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
     <script>
         var ps = new PerfectScrollbar('#sidebar');
     </script>

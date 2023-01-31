@@ -3,17 +3,18 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Manage Category</h1>
+<h1>Manage Brand</h1>
 <hr />
 <div class="row">
     <div class="col-md-12">
         <p class="text-right">
-            <a asp-controller="Categories" asp-action="Upsert" class="btn btn-success btn-sm"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add New Category</a>
+            <a asp-controller="Brands" asp-action="Upsert" class="btn btn-success btn-sm"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add New Brand</a>
         </p>
-        <table class="table table-bordered table-striped table-sm" id="tbl_Category">
+        <table class="table table-bordered table-striped table-sm" id="tbl_brand">
             <thead class="bg-info text-light">
                 <tr>
                     <th>#</th>
+                    <th>Image</th>
                     <th>Name</th>
                     <th>Action</th>
                 </tr>
@@ -23,6 +24,6 @@
 </div>
 
 @section Scripts{
-    <script src="~/js/Category/category.js"> </script>
+    <script src="~/js/Brand/brand.js"> </script>
 
 }

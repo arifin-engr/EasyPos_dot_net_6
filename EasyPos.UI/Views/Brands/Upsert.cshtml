@@ -1,0 +1,52 @@
+﻿@model BrandVM
+@{
+    ViewData["Title"] = "Upsert";
+}
+<div class="p-4 border">
+    <h1> @(Model.Brand.Id == 0 ? "Create" : "Update") New Brand</h1>
+   
+   
+    <hr />
+    <div class="pt-2">
+        <form asp-action="Upsert">
+            <input hidden asp-for="Brand.Id" />
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label asp-for="Brand.Name"></label>
+                        <input asp-for="Brand.Name" class="form-control" />
+                        <span asp-validation-for="Brand.Name" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Brand.LogoUrl"></label>
+                        <textarea asp-for="Brand.LogoUrl" class="form-control"></textarea>
+                        <span asp-validation-for="Brand.LogoUrl" class="text-danger"></span>
+                    </div>
+                     <div class="mb-3 d-flex">
+                        @if (Model.Brand.Id==0)
+                        {
+                            <button type="submit" class="btn btn-info mx-1" style="width:140px">Submit</button>
+                        }
+                        else
+                        {
+                             <button type="submit" class="btn btn-info mx-1" style="width:140px">Update</button>
+                        }
+                       
+                        <a asp-controller="Brands" asp-action="Index" class="btn btn-secondary mx-1" style="width:140px">Go To List</a>
+                       
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts
+    {
+    @{
+        <partial name="_ValidationScriptsPartial.cshtml" />
+    }
+    
+}

@@ -1,0 +1,52 @@
+﻿@model CategoryVM
+@{
+    ViewData["Title"] = "Upsert";
+}
+<div class="p-4 border">
+    <h1> @(Model.Category.Id==0?"Create":"Update") New Category</h1>
+   
+   
+    <hr />
+    <div class="pt-2">
+        <form asp-action="Upsert">
+            <input hidden asp-for="Category.Id" />
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label asp-for="Category.Name"></label>
+                        <input asp-for="Category.Name" class="form-control" />
+                        <span asp-validation-for="Category.Name" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Category.Description"></label>
+                        <textarea asp-for="Category.Description" class="form-control" ></textarea>
+                        <span asp-validation-for="Category.Description" class="text-danger"></span>
+                    </div>
+                     <div class="mb-3 d-flex">
+                        @if (Model.Category.Id==0)
+                        {
+                            <button type="submit" class="btn btn-info mx-1" style="width:140px">Submit</button>
+                        }
+                        else
+                        {
+                             <button type="submit" class="btn btn-info mx-1" style="width:140px">Update</button>
+                        }
+                       
+                        <a asp-controller="Categories" asp-action="Index" class="btn btn-secondary mx-1" style="width:140px">Go To List</a>
+                       
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts
+    {
+    @{
+        <partial name="_ValidationScriptsPartial.cshtml" />
+    }
+    <script src="~/js/Category/category.js"> </script>
+}

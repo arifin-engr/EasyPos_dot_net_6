@@ -8,13 +8,13 @@ using EasyPos.Models.AppEntity;
 
 namespace EasyPos.UI.Controllers
 {
-    public class CategoriesController : Controller
+    public class BrandsController : Controller
     {
 
         Uri baseUrl = new Uri("https://localhost:7173/api");
        
         private readonly HttpClient _client;
-        public CategoriesController( )
+        public BrandsController( )
         {
            
             _client = new HttpClient();
@@ -30,39 +30,39 @@ namespace EasyPos.UI.Controllers
         [HttpGet]
         public IActionResult Upsert(int?id)
         {
-            CategoryVM categoryVM = new()
+            BrandVM brandVM = new()
             {
-                Category = new Category()
+                Brand = new Brand()
             };
 
             if (id!=null)
             {
                 
-                HttpResponseMessage response = _client.GetAsync(baseUrl + "/Categories/GetById?id=" + id).Result;
+                HttpResponseMessage response = _client.GetAsync(baseUrl + "/Brands/GetById?id=" + id).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     string data = response.Content.ReadAsStringAsync().Result;
-                    categoryVM.Category = JsonConvert.DeserializeObject<Category>(data);
+                    brandVM.Brand = JsonConvert.DeserializeObject<Brand>(data);
 
                 }
-                return View(categoryVM);
+                return View(brandVM);
             }
-            return View(categoryVM);
+            return View(brandVM);
            
         }
 
         [HttpPost]
         
-        public IActionResult Upsert(CategoryVM obj)
+        public IActionResult Upsert(BrandVM obj)
         {
-            ModelState.Remove("Category.Id");
+            ModelState.Remove("Brand.Id");
             if (ModelState.IsValid)
             {
-                var model = new Category();
-                model = obj.Category;
+                var model = new Brand();
+                model = obj.Brand;
                 string data = JsonConvert.SerializeObject(model);
                 StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
-                HttpResponseMessage respone = _client.PostAsync(_client.BaseAddress + "/Categories/Create", content).Result;
+                HttpResponseMessage respone = _client.PostAsync(_client.BaseAddress + "/Brands/Create", content).Result;
                 if (respone.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
