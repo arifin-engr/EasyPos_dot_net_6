@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Manage Unit</h1>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <p class="text-right">
+            <a asp-controller="Units" asp-action="Upsert" class="btn btn-success btn-sm"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add New Unit</a>
+        </p>
+        <table class="table table-bordered table-striped table-sm" id="tbl_unit">
+            <thead class="bg-info text-light">
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>RelatedTo</th>
+                    <th>Related Sign</th>
+                    <th>Related By</th>
+                    <th>Result</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Unit/unit.js"> </script>
+
+}

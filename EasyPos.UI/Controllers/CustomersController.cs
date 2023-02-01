@@ -8,13 +8,13 @@ using EasyPos.Models.AppEntity;
 
 namespace EasyPos.UI.Controllers
 {
-    public class SuppliersController : Controller
+    public class CustomersController : Controller
     {
 
         Uri baseUrl = new Uri("https://localhost:7173/api");
        
         private readonly HttpClient _client;
-        public SuppliersController( )
+        public CustomersController( )
         {
            
             _client = new HttpClient();
@@ -30,39 +30,39 @@ namespace EasyPos.UI.Controllers
         [HttpGet]
         public IActionResult Upsert(int?id)
         {
-            SupplierVM supplierVM = new()
+            CustomerVM customerVM = new()
             {
-                Supplier = new Supplier()
+                Customer = new Customer()
             };
 
             if (id!=null)
             {
                 
-                HttpResponseMessage response = _client.GetAsync(baseUrl + "/Suppliers/GetById?id=" + id).Result;
+                HttpResponseMessage response = _client.GetAsync(baseUrl + "/Customers/GetById?id=" + id).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     string data = response.Content.ReadAsStringAsync().Result;
-                    supplierVM.Supplier = JsonConvert.DeserializeObject<Supplier>(data);
+                    customerVM.Customer = JsonConvert.DeserializeObject<Customer>(data);
 
                 }
-                return View(supplierVM);
+                return View(customerVM);
             }
-            return View(supplierVM);
+            return View(customerVM);
            
         }
 
         [HttpPost]
         
-        public IActionResult Upsert(SupplierVM obj)
+        public IActionResult Upsert(CustomerVM obj)
         {
-            ModelState.Remove("Suppplier.Id");
+            ModelState.Remove("CustomerId.Id");
             if (ModelState.IsValid)
             {
-                var model = new Supplier();
-                model = obj.Supplier;
+                var model = new Customer();
+                model = obj.Customer;
                 string data = JsonConvert.SerializeObject(model);
                 StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
-                HttpResponseMessage respone = _client.PostAsync(_client.BaseAddress + "/Suppliers/Create", content).Result;
+                HttpResponseMessage respone = _client.PostAsync(_client.BaseAddress + "/Customers/Create", content).Result;
                 if (respone.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");

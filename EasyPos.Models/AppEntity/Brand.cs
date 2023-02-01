@@ -11,6 +11,6 @@ namespace EasyPos.Models.AppEntity
     {
         [Required]
         public string Name { get; set; }
-        public string LogoUrl { get; set; }
+        public string? LogoUrl { get; set; }
     }
 }

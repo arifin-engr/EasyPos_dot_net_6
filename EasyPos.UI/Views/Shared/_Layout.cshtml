@@ -107,26 +107,29 @@
                             </ul>
                         </li>
                         <h4>People Information</h4>
-                        <li class="active">
-                            <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Additional Pages</span></a>
-                            <ul class="collapse list-unstyled" id="additional_page">
+                        <li>
+                            <a href="#supplierTab" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-dashboard yellow_color"></i> <span>Supplier</span></a>
+                            <ul class="collapse list-unstyled" id="supplierTab">
                                 <li>
-                                    <a href="profile.html">> <span>Profile</span></a>
+                                    <a asp-controller="Suppliers" asp-action="Upsert">> <span>New Supplier</span></a>
                                 </li>
                                 <li>
-                                    <a href="project.html">> <span>Projects</span></a>
-                                </li>
-                                <li>
-                                    <a href="login.html">> <span>Login</span></a>
-                                </li>
-                                <li>
-                                    <a href="404_error.html">> <span>404 Error</span></a>
+                                    <a asp-controller="Suppliers" asp-action="Index">> <span>Manage Supplier</span></a>
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="map.html"><i class="fa fa-map purple_color2"></i> <span>Map</span></a></li>
-                        <li><a href="charts.html"><i class="fa fa-bar-chart-o green_color"></i> <span>Charts</span></a></li>
-                        <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
+                        <li>
+                            <a href="#customerTab" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-dashboard yellow_color"></i> <span>Customer</span></a>
+                            <ul class="collapse list-unstyled" id="customerTab">
+                                <li>
+                                    <a asp-controller="Customers" asp-action="Upsert">> <span>New Customer</span></a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Customers" asp-action="Index">> <span>Manage Customer</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        
                     </ul>
 
                 </div>

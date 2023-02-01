@@ -3,21 +3,21 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Manage Supplier</h1>
+<h1>Manage Customer</h1>
 <hr />
 <div class="row">
     <div class="col-md-12">
         <p class="text-right">
-            <a asp-controller="Suppliers" asp-action="Upsert" class="btn btn-success btn-sm"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add New Supplier</a>
+            <a asp-controller="Customers" asp-action="Upsert" class="btn btn-success btn-sm"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add New Customer</a>
         </p>
-        <table class="table table-bordered table-striped table-sm" id="tbl_supplier">
+        <table class="table table-bordered table-striped table-sm" id="tbl_customer">
             <thead class="bg-info text-light">
                 <tr>
                     <th>#</th>
                     <th>Name</th>
                     <th>Address</th>
                     <th>Phone Number</th>
-                    <th>Opening Balance</th>
+                    <th>Due</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -26,6 +26,6 @@
 </div>
 
 @section Scripts{
-    <script src="~/js/Supplier/supplier.js"> </script>
+    <script src="~/js/Customer/customer.js"> </script>
 
 }

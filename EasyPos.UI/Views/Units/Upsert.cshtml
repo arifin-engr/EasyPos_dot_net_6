@@ -1,0 +1,85 @@
+﻿@model UnitVM
+@{
+    ViewData["Title"] = "Upsert";
+}
+<div class="p-4 border">
+    <h1> @(Model.Unit.Id == 0 ? "Create" : "Update") New Unit</h1>
+   
+   
+    <hr />
+    <div class="pt-2">
+        <form asp-action="Upsert">
+            <input hidden asp-for="Unit.Id" />
+            <div class="row">
+                <div class="col-md-12">
+                      <div class="mb-3">
+                        <label asp-for="Unit.Name"></label>
+                        <input asp-for="Unit.Name" class="form-control" id="Unit_Name" />
+                        <span asp-validation-for="Unit.Name" class="text-danger"></span>
+                    </div>
+                   
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-4">
+                     <div class="mb-3">
+                        <label asp-for="Unit.RelatedUnitId"></label>
+                        <select asp-for="Unit.RelatedUnitId" class="form-control unitChange" asp-items="@Model.UnitList" id="Unit_RelatedUnitId">
+                              <option selected="selected" value="">Select Unit</option>
+                        </select>
+                       
+                    </div>
+                </div>
+                    <div class="col-md-4">
+                    <div class="mb-3">
+                        <label asp-for="Unit.Operator"></label>
+                        <select asp-for="Unit.Operator" class="form-control opratorChange" id="Unit_Operator">
+                            <option selected="selected" value="">Select Oprator Sign</option>
+                            <option value="*">(*)Multiply Operator</option>
+                        </select>
+
+                    </div>
+                </div>
+                    <div class="col-md-4">
+                    <div class="mb-3">
+                        <label asp-for="Unit.RelatedBy"></label>
+                        <input asp-for="Unit.RelatedBy" class="form-control" id="Unit_RelatedBy" />
+
+                        <span asp-validation-for="Unit.RelatedBy" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+                    <div class="mb-2 text-center unit-count py-3" style="display:none">
+                        <label for="">1= </label>
+
+                    </div>
+                     <div class="mb-3 d-flex">
+                        @if (Model.Unit.Id==0)
+                        {
+                            <button type="submit" class="btn btn-info mx-1" style="width:140px">Submit</button>
+                        }
+                        else
+                        {
+                             <button type="submit" class="btn btn-info mx-1" style="width:140px">Update</button>
+                        }
+                       
+                        <a asp-controller="Units" asp-action="Index" class="btn btn-secondary mx-1" style="width:140px">Go To List</a>
+                       
+                    
+                
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts
+    {
+    @{
+        <partial name="_ValidationScriptsPartial.cshtml" />
+    }
+    <script src="~/js/Unit/unit.js"></script>
+    
+}
