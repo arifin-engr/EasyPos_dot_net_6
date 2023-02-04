@@ -1,0 +1,310 @@
+﻿@model ProductVM
+@{
+    ViewData["Title"] = "Upsert";
+}
+<form asp-action="Upsert" method="post" enctype="multipart/form-data">
+
+    <div class="row">
+        <input hidden asp-for="Product.Id" />
+        <input hidden asp-for="Product.ImageUrl" />
+        <div class="col-md-3">
+            <div class=" mt-4 p-7">
+                <img id="imageFileUpload" src="@Model.Product.ImageUrl" style="width:200px;height:300px;border-radius:4px" />
+                <div class="mb-3 mt-2 ">
+
+                    <label asp-for="Product.ImageUrl"></label>
+                    <input type="file" id="uploadbox" asp-for="Product.ImageUrl" name="file" class="form-control" />
+                    <span asp-validation-for="Product.ImageUrl" class="text-danger"></span>
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-9">
+
+
+            <div class="border mt-4 p-3 ">
+                <div class="row pb-2">
+                    <h2 class="text-dark">@(Model.Product.Id == 0 ? "Create" : "Update") Product</h2>
+                    <hr />
+                </div>
+                <div class="row">
+
+                
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Product.Name"></label>
+                    <input asp-for="Product.Name" class="form-control" />
+                    <span asp-validation-for="Product.Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Product.Code"></label>
+                    <input asp-for="Product.Code" class="form-control" />
+                    <span asp-validation-for="Product.Code" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Product.CategoryId"></label>
+                    <div>
+                          
+                    <span>
+                            <select asp-for="Product.CategoryId" class="form-control" asp-items="@Model.CategoryList">
+                                <option disabled selected>--Select Category--</option>
+                            </select>
+                    </span>
+                            <span>
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#createCategory"><i class="fa-solid fa-circle-plus"></i></button>
+                            </span>
+                    </div>
+                      
+                    
+                        
+                    <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Product.BrandId"></label>
+                        <div>
+
+                            <span>
+                                <select asp-for="Product.BrandId" class="form-control" asp-items="@Model.BrandList">
+                                    <option disabled selected>--Select Brand--</option>
+                                </select>
+                            </span>
+                            <span>
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#categoryBrand"><i class="fa-solid fa-circle-plus"></i></button>
+                            </span>
+                        </div>
+                    <span asp-validation-for="Product.BrandId" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Product.UnitId"></label>
+                    <select asp-for="Product.UnitId" class="form-control" asp-items="@Model.UnitList" id="unitId">
+                            <option disabled selected>--Select Unit--</option>
+                    </select>
+                    <span asp-validation-for="Product.UnitId" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Product.SubUnitId"></label>
+                        <select asp-for="Product.SubUnitId" class="form-control" id="Product_SubUnitId">
+                        <option selected value="0" class="defaultSubUnitOption">--Select Sub Unit--</option>
+                    </select>
+                    <span asp-validation-for="Product.SubUnitId" class="text-danger"></span>
+                </div>
+
+
+
+                <div class="mb-3  col-md-6">
+                    <label asp-for="Product.PurchaseCost"></label>
+                    <input asp-for="Product.PurchaseCost" class="form-control" />
+                    <span asp-validation-for="Product.PurchaseCost" class="text-danger"></span>
+                </div>
+                <div class="mb-3  col-md-6">
+                    <label asp-for="Product.SalePrice"></label>
+                    <input asp-for="Product.SalePrice" class="form-control" />
+                    <span asp-validation-for="Product.SalePrice" class="text-danger"></span>
+                </div>
+                    <div class="mb-3 col-md-12">
+                    <label asp-for="Product.Description"></label>
+                    <textarea asp-for="Product.Description" class="form-control"></textarea>
+                    <span asp-validation-for="Product.Description" class="text-danger"></span>
+                </div>
+
+
+
+                <div class="col-md-12 ">
+                    @if (Model.Product.Id != 0)
+                    {
+                        <button type="submit" style="width:150px" class="btn btn-info">Update</button>
+                    }
+                    else
+                    {
+                        <button type="submit" style="width:150px" class="btn btn-info">Create</button>
+                    }
+
+                    <a asp-action="Index" asp-controller="Products" type="button" style="width:150px" class="btn btn-secondary mx-2">Back to List</a>
+                </div>
+            </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</form>
+
+
+
+@*Modal
+*@
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<!-- Category modal -->
+<div class="modal fade" id="createCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Create New Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="CaetgoryForm">
+                    <div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label asp-for="Category.Name"></label>
+                                    <input asp-for="Category.Name" id="categoryName" class="form-control" />
+                                    <span asp-validation-for="Category.Name" class="text-danger"></span>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label asp-for="Category.Description"></label>
+                                    <textarea asp-for="Category.Description" id="categoryDescription" class="form-control"></textarea>
+                                    <span asp-validation-for="Category.Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                       
+
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" onclick="SaveCategory()" class="btn btn-info">Submit</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Brand modal -->
+<div class="modal fade" id="categoryBrand" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Create New Brand</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="BrandForm" method="post" enctype="multipart/form-data" >
+
+                    <input id="brandId"  asp-for="Brand.Id" hidden />
+                    <div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                  <div class="mb-3">
+                                    <label asp-for="Brand.Name"></label>
+                                    <input asp-for="Brand.Name" id="brandName"  class="form-control" />
+                                    <span asp-validation-for="Brand.Name"  class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="Brand.LogoUrl"></label>
+                                    <input multiple size="1" type="file" name="file" onchange="uploadBrandImage('files');" asp-for="Brand.LogoUrl" id="brandLogo" class="form-control" />
+                                    <span asp-validation-for="Brand.LogoUrl" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-5 ">
+                                <div class="p-2 border text-center">
+                                    <img id="BrandimageFileUpload" src="" style="width:120px;height:120px;border-radius:4px" />
+                                </div>
+                               
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" onclick="SaveBrand()" class="btn btn-info">Submit</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+            </div>
+            </div>
+           
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+    <script src="~/js/Product/product.js"></script>
+
+    <script type="text/javascript">
+
+        
+
+        //Product Image Change
+        document.getElementById('uploadbox').onchange = function () {
+            document.getElementById('imageFileUpload').src = URL.createObjectURL(uploadbox.files[0]);
+        }
+
+        document.getElementById('brandLogo').onchange = function () {
+            document.getElementById('BrandimageFileUpload').src = URL.createObjectURL(brandLogo.files[0]);
+
+            //debugger
+            //let pp = $('#brandLogo')[0].files[0]
+            //var input = document.getElementById('brandLogo');
+            //var files = input.files;
+            //var formData = new FormData();
+
+            //for (var i = 0; i != files.length; i++) {
+            //    formData.append("files", files[i]);
+            //}
+
+            //$.ajax({
+            //                url: "/Brands/Upsert",
+            //                type: "POST",
+            //                data: formData,
+            //                success: function (response) {
+            //                    debugger
+            //                    location.reload(true);
+            //                },
+            //                error: function (request, status, error) {
+            //                    alert(request.responseText);
+            //                }
+            //            });
+
+
+
+          }
+
+
+    </script>
+}

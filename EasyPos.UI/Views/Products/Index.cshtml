@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Manage Product</h1>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <p class="text-right">
+            <a asp-controller="Products" asp-action="Upsert" class="btn btn-success btn-sm"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add New Product</a>
+        </p>
+        <table class="table table-bordered table-striped table-sm" id="tbl_product">
+            <thead class="bg-info text-light">
+                <tr>
+                    <th>#</th>
+                    <th>Image</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Brand</th>
+                    <th>Price</th>
+                    <th>Cost</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Product/product.js"> </script>
+
+}

@@ -22,6 +22,7 @@ namespace EasyPos.DAL.Repositories
             Supplier = new SupplierRepository(_db);
             Sales = new SalesRepository(_db);
             Purchase = new PurchaseRepository(_db);
+            Product = new ProductRepository(_db);
         }
         public ICategoryRepository Category { get; private set; }
 

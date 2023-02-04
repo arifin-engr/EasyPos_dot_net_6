@@ -8,7 +8,7 @@
    
     <hr />
     <div class="pt-2">
-        <form asp-action="Upsert">
+        <form asp-action="Upsert" enctype="multipart/form-data">
             <input hidden asp-for="Brand.Id" />
             <div class="row">
                 <div class="col-md-4">
@@ -19,24 +19,31 @@
                     </div>
                     <div class="mb-3">
                         <label asp-for="Brand.LogoUrl"></label>
-                        <textarea asp-for="Brand.LogoUrl" class="form-control"></textarea>
-                        <span asp-validation-for="Brand.LogoUrl" class="text-danger"></span>
+                        <input asp-for="Brand.LogoUrl" name="file" id="uploadbox" type="file" class="form-control" />
+                       
                     </div>
-                     <div class="mb-3 d-flex">
-                        @if (Model.Brand.Id==0)
-                        {
-                            <button type="submit" class="btn btn-info mx-1" style="width:140px">Submit</button>
-                        }
-                        else
-                        {
-                             <button type="submit" class="btn btn-info mx-1" style="width:140px">Update</button>
-                        }
-                       
-                        <a asp-controller="Brands" asp-action="Index" class="btn btn-secondary mx-1" style="width:140px">Go To List</a>
-                       
+                    
+                </div>
+                <div class="col-md-3">
+                    <div class="p-4 border text-center">
+                        <img src="@Model.Brand.LogoUrl" style="width:100px;height:120px" id="imageFileUpload" />
                     </div>
                 </div>
             </div>
+            <div class="mb-3 d-flex">
+                @if (Model.Brand.Id == 0)
+                {
+                    <button type="submit" class="btn btn-info mx-1" style="width:140px">Submit</button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-info mx-1" style="width:140px">Update</button>
+                }
+
+                <a asp-controller="Brands" asp-action="Index" class="btn btn-secondary mx-1" style="width:140px">Go To List</a>
+
+            </div>
+
         </form>
     </div>
 </div>
@@ -50,3 +57,11 @@
     }
     
 }
+
+<script>
+    //Image Change
+    document.getElementById('uploadbox').onchange = function () {
+        document.getElementById('imageFileUpload').src = URL.createObjectURL(uploadbox.files[0]);
+    }
+    
+</script>

@@ -16,3 +16,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/*custom css*/
+
+.table-logo-image
+{
+    width:25px;
+    height:25px;
+}

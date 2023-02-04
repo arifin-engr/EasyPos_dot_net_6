@@ -14,9 +14,10 @@ namespace EasyPos.UI.Controllers
         Uri baseUrl = new Uri("https://localhost:7173/api");
        
         private readonly HttpClient _client;
-        public BrandsController( )
+        private readonly IWebHostEnvironment _webHost;
+        public BrandsController(IWebHostEnvironment webHost)
         {
-           
+            _webHost = webHost;
             _client = new HttpClient();
             _client.BaseAddress = baseUrl;
         }
@@ -53,13 +54,41 @@ namespace EasyPos.UI.Controllers
 
         [HttpPost]
         
-        public IActionResult Upsert(BrandVM obj)
+        public IActionResult Upsert(BrandVM obj, IFormFile? file)
         {
             ModelState.Remove("Brand.Id");
             if (ModelState.IsValid)
             {
                 var model = new Brand();
                 model = obj.Brand;
+                string mmRoot = _webHost.WebRootPath;
+
+                if (file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    string filePath = Path.Combine(mmRoot, @"img\BrandImages");
+                    if (!Directory.Exists(filePath))
+                    {
+                        Directory.CreateDirectory(filePath);
+                    }
+                    var fileExtention = file.FileName;
+                    if (obj.Brand.LogoUrl != null)
+                    {
+                        string oldPath = Path.Combine(mmRoot, obj.Brand.LogoUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldPath))
+                        {
+                            System.IO.File.Delete(oldPath);
+                        }
+                    }
+                    using (var fileStream = new FileStream(Path.Combine(filePath, fileName + fileExtention), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+                    model.LogoUrl = @"\img\BrandImages\" + fileName + fileExtention;
+
+                }
+
+
                 string data = JsonConvert.SerializeObject(model);
                 StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
                 HttpResponseMessage respone = _client.PostAsync(_client.BaseAddress + "/Brands/Create", content).Result;

@@ -58,7 +58,7 @@ namespace EasyPos.Models.AppEntity
         [ValidateNever]
         public Unit? Unit { get; set; }
 
-        
+        [ValidateNever]
         public virtual ICollection<Stock>? Stocks { get; set; }
     }
 }

@@ -25,7 +25,14 @@ function loadDataTable()
                     return counter++;
                 }
             },
-            { 'data': "logoUrl",},
+            {
+                "data": "logoUrl",
+                "render": function (data, type, full, meta) {
+
+                    return '<img class="table-logo-image" src="' + data +'" />'
+
+                }
+            },
             { 'data': "name",},
             {
                 "data": "id",

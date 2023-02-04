@@ -10,8 +10,8 @@ namespace EasyPos.DAL.Repositories.IRepositories
 {
     public interface IRepository<T> where T:BaseEntity
     {
-        IEnumerable<T> GetAll();
-        T GetFirstOrDefault(Expression<Func<T,bool>>filter);
+        IEnumerable<T> GetAll(string? includeProperties = null);
+        T GetFirstOrDefault(Expression<Func<T,bool>>filter, string? includeProperties = null);
         void Add(T entity);
         void Delete(T entity);
 
