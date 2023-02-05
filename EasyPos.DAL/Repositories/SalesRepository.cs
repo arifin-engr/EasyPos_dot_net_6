@@ -16,6 +16,10 @@ namespace EasyPos.DAL.Repositories
         {
             _db= db;
         }
+        public List<SalesItem> GetSalesItems(int SalesId)
+        {
+            return _db.SalesItem.AsQueryable().Where(w => w.SalesId == SalesId).ToList();
+        }
         public void Update(Sale entity)
         {
             _db.Update(entity);

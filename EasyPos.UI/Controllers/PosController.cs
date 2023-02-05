@@ -3,6 +3,7 @@ using EasyPos.Models.AppVM;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace EasyPos.UI.Controllers
 {
@@ -77,5 +78,7 @@ namespace EasyPos.UI.Controllers
 
             return View(purchaseVM);
         }
+
+        
     }
 }

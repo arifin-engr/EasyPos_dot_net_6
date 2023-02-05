@@ -11,7 +11,7 @@ var productVm = null;
 
 $("#ProductList").on("change", function () {
 
-    debugger
+   
 
     var productId = $("#ProductList option:selected").val();
     var productName = $("#ProductList option:selected").text();
@@ -24,17 +24,17 @@ $("#ProductList").on("change", function () {
         async: false,
 
         success: function (data) {
-            debugger;
+           
             productVm = data;
             product = data;
             productPrice = product.salePrice;
 
         }
     });
-    debugger;
+  
     var productUnitRelatedBy = product.unit.relatedBy;
 
-    debugger
+    
     
     //var singleUnit = '<td class="pr-3"> <div class="form-row"><label class="ml-2 mr-2">###unitname###:</label>' +
     //    '<input type = "text" value = "0" class="form-control col main_qty" name ="" data-relatedby="' + product.unit.relatedBy + '" onkeyup = "CalculateSubTotal()"></div> </td>';
@@ -52,11 +52,11 @@ $("#ProductList").on("change", function () {
     var productRow =
         '<tr> <td> <span class="productName">' + productName + '</span> <input type = "hidden" value = "' + productId + '" class="ProductId" name = "Sale.SalesItems[' + index + '].ProductId" class="" ></td>' +
         '<td class="pr-3"> <div class="form-row"><label class="ml-2 mr-2">KG:</label>' +
-        '<input type = "text" value = "0" class="form-control col main_qty" name ="" data-relatedby="' + product.unit.relatedBy + '" onkeyup = "CalculateSubTotal()">' +
-        '<label class="ml-2 mr-2">gm:</label><input type = "text" value = "0" class="form-control col sub_qty" name = "" onkeyup = "CalculateSubTotal()"> </div> </td>'+
+        '<input style="width: 95px;" type = "text" value = "0" class="form-control col main_qty" name ="" data-relatedby="' + product.unit.relatedBy + '" onkeyup = "CalculateSubTotal()">' +
+        '<label class="ml-2 mr-2">gm:</label><input style="width: 95px;" type = "text" value = "0" class="form-control col sub_qty" name = "" onkeyup = "CalculateSubTotal()"> </div> </td>'+
        /* '<td ><div class="d-flex"> <span>KG: </span> <input type = "number" style="width: 80px;height: 26px;margin: 0 10px;"  class="form-control" > <span>gm: </span> <input type = "number" style="width: 80px;height: 26px;margin: 0 10px;" class="form-control" > </div></td > ' +*/
         '###quantityinput### <input type="hidden" class="quantity" name="Sale.SalesItems[' + index + '].Quantity" /> <input type="hidden" value="' + product.purchaseCost + '" name="Sale.SalesItems[' + index + '].PurchaseCost" />' +
-        '<td ><input type="text" style="width: 55px;height: 26px;" value="' + productPrice + '" class="form-control rate" name="Sale.SalesItems[' + index + '].Price" onkeyup="CalculateSubTotal()"></td>' +
+        '<td ><input type="text" style="width: 95px;" value="' + productPrice + '" class="form-control rate" name="Sale.SalesItems[' + index + '].Price" onkeyup="CalculateSubTotal()"></td>' +
 
         '<td > <strong><span class="sub_total">0</span> Tk</strong> <input  type="hidden" name="Sales.SalesItems[' + index + '].SubTotal" class="subtotal_input" value="0"></td>' +
         '<td> <a onclick="RemoveProduct(this)" class="removeProduct">  <i class="fa fa-trash"></i> </a> </td>  </tr> ';
@@ -141,7 +141,7 @@ function CalculateTotalQty() {
 }
 
 function RemoveProduct(elem) {
-    debugger;
+    
     var row = $(elem).parent().parent();
     var productName = row.find(".productName").text();
     var productId = row.find(".ProductId").val();
@@ -155,7 +155,7 @@ function RemoveProduct(elem) {
     $("#ProductList").append(newOption);
 }
 $("#payment-modal").on("shown.bs.modal", function () {
-    debugger;
+    
     var dis = 0;
 
     var grandTotal = $("#PurchaseGrandTotal").val();
@@ -171,7 +171,7 @@ $("#payment-modal").on("shown.bs.modal", function () {
     $("#due_input").val(grandTotal);
 })
 function SetPaidAmount() {
-    debugger
+    
 
     var grandTotal = $("#PurchaseGrandTotal").val();
     $("#pay_amount").val(grandTotal);
@@ -180,7 +180,7 @@ function SetPaidAmount() {
 }
 
 $("#pay_amount").keyup(function () {
-    debugger;
+    
     var grandTotal = $("#PurchaseGrandTotal").val();
     var payAmount = $("#pay_amount").val();
     var due = parseFloat(0 - grandTotal);
@@ -255,7 +255,7 @@ function next() {
 
 }
 function go_to_page(page_num) {
-    debugger;
+    
     //get the number of items shown per page
     var show_per_page = parseInt($('#show_per_page').val());
 
@@ -277,7 +277,7 @@ function go_to_page(page_num) {
 }
 
 function getProducts(searchFilter, categoryId) {
-    debugger;
+    
     $.ajax({
 
         url: "/Pos/GetProducts?searchFilter=" + searchFilter + "&categoryId=" + categoryId,
@@ -286,7 +286,7 @@ function getProducts(searchFilter, categoryId) {
         async: false,
 
         success: function (data) {
-            debugger
+            
             products = data.data;
 
             $("#pagingBox").html("");
@@ -314,7 +314,7 @@ function getProducts(searchFilter, categoryId) {
 
 
 $("#pagingBox").on('click', '.selimage', function () {
-    debugger;
+    
 
     var productId = $(this).data("pcode");
     $.ajax({
@@ -333,7 +333,7 @@ $("#pagingBox").on('click', '.selimage', function () {
         }
     });
 
-    debugger;
+    
     var singleUnit = '<td class="pr-3"> <div class="form-row"><label class="ml-2 mr-2">###unitname###:</label>' +
         '<input type = "text" value = "0" class="form-control col main_qty" name ="" data-relatedby="' + product.unit.relatedBy + '" onkeyup = "CalculateSubTotal()"></div> </td>';
 
@@ -370,7 +370,7 @@ $("#pagingBox").on('click', '.selimage', function () {
 
 });
 function searchProduct() {
-    debugger;
+    
     var filter = $("#searchInput").val();
     getProducts(filter, null);
 
@@ -395,5 +395,82 @@ function getAllProduct() {
     });
 
     return product;
+
+}
+$('#goPayment').on('click', function () {
+    
+    let totall = $('#grandTotalTxt').text();
+    $('#receivable').text(totall);
+    $('#after_discount').text(totall);
+    $('#balance').text('-'+totall);
+
+})
+
+$('#paid_btn').on('click', function () {
+
+    $('#balance').text('0');
+    let totall = $('#grandTotalTxt').text();
+    $('#pay_amount').val(totall);
+
+})
+
+
+
+$('#loadInvoice').on('click', function () {
+
+    
+    var customerData;
+    let customerId = $('#customer').find(":selected").text();
+    var name = customerId.substring(0, customerId.indexOf('-'));
+    var number = customerId.split('-').pop();
+    $('#customerName').text(name)
+    $('#number').text(number);
+
+    debugger
+    let grandPrice = $('#receivable').text();
+    $('#grandPrice').text(grandPrice);
+    $('#paidPrice').text(grandPrice);
+    
+    
+    //$.ajax({
+
+    //    url: baseUrl + "/Customers/GetById?id=" + customerId,
+    //    type: 'GET',
+    //    success: function (data) {
+
+            
+    //        customerData = data;
+    //        let pp = data.name
+    //    }
+
+
+    //})
+    //debugger
+    //let customerName = customerData.name
+
+    
+   
+
+})
+
+
+function getCustomer() {
+
+    
+    var customerData;
+    let customerId = $('#customer').find(":selected").val();
+    $.ajax({
+
+        url: baseUrl + "/Customers/GetById?id=" + customerId,
+        type: 'GET',
+        success: function (data) {
+            debugger
+            customerData = data;
+        }
+
+
+    })
+    debugger
+    return customerData;
 
 }

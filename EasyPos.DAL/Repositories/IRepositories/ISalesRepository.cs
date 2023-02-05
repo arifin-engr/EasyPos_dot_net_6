@@ -10,5 +10,7 @@ namespace EasyPos.DAL.Repositories.IRepositories
     public interface ISalesRepository : IRepository<Sale>
     {
         void Update(Sale entity);
+        List<SalesItem> GetSalesItems(int SalesId);
     }
+
 }
